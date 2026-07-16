@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState, type DragEvent } from 'react'
-import type { ServiceWorkerRegistration } from 'web-worker'
 import { Avatar } from './components/Avatar'
 import { AvailabilityBadge } from './components/AvailabilityBadge'
 import { Background } from './components/Background'
@@ -78,11 +77,11 @@ export default function App() {
     }
   }
 
-  const onDragStart = (event: DragEvent<HTMLDivElement>, index: number) => {
+  const onDragStart = (event: DragEvent<HTMLElement>, index: number) => {
     event.dataTransfer.setData('text/plain', String(index))
   }
 
-  const onDrop = (event: DragEvent<HTMLDivElement>, index: number) => {
+  const onDrop = (event: DragEvent<HTMLElement>, index: number) => {
     const from = Number(event.dataTransfer.getData('text/plain'))
     if (Number.isNaN(from)) return
 
@@ -92,7 +91,7 @@ export default function App() {
     setLinks(updated)
   }
 
-  const onDragOver = (event: DragEvent<HTMLDivElement>) => {
+  const onDragOver = (event: DragEvent<HTMLElement>) => {
     event.preventDefault()
   }
 

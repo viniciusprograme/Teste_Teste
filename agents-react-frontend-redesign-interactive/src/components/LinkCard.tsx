@@ -7,9 +7,9 @@ type LinkCardProps = {
   item: LinkItem
   index: number
   onCopy: (href: string) => void
-  onDragStart: (event: DragEvent<HTMLDivElement>, index: number) => void
-  onDrop: (event: DragEvent<HTMLDivElement>, index: number) => void
-  onDragOver: (event: DragEvent<HTMLDivElement>) => void
+  onDragStart: (event: DragEvent<HTMLElement>, index: number) => void
+  onDrop: (event: DragEvent<HTMLElement>, index: number) => void
+  onDragOver: (event: DragEvent<HTMLElement>) => void
 }
 
 export function LinkCard({
@@ -29,7 +29,7 @@ export function LinkCard({
       transition={{ duration: 0.35, delay: index * 0.04 }}
       whileHover={{ y: -3, scale: 1.01, rotateX: 1 }}
       draggable
-      onDragStart={(event) => onDragStart(event, index)}
+      onDragStartCapture={(event) => onDragStart(event, index)}
       onDrop={(event) => onDrop(event, index)}
       onDragOver={onDragOver}
       className="group relative overflow-hidden rounded-[22px] border border-white/15 bg-white/10 p-4 shadow-[0_12px_40px_rgba(2,8,23,0.24)] backdrop-blur-xl"
@@ -41,7 +41,11 @@ export function LinkCard({
             <Icon className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">{item.label}</h3>
+            <h3 className="text-base font-semibold text-slate-900 dark:text-white">
+              <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                {item.label}
+              </a>
+            </h3>
             <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{item.description}</p>
           </div>
         </div>
@@ -53,12 +57,15 @@ export function LinkCard({
           >
             <Copy className="h-4 w-4" />
           </button>
-          <button
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full border border-white/15 bg-white/10 p-2 text-slate-700 transition hover:bg-white/20 dark:text-white"
             aria-label={`Abrir ${item.label}`}
           >
             <ArrowUpRight className="h-4 w-4" />
-          </button>
+          </a>
         </div>
       </div>
       <div className="relative mt-4 flex items-center justify-between">
