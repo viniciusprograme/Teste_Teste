@@ -1,0 +1,12 @@
+{
+  "name": "link-worktrees-firebase-hosting",
+  "private": true,
+  "workspaces": [
+    "agents-react-frontend-redesign-interactive"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace agents-react-frontend-redesign-interactive",
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy --only hosting"
+  }
+}

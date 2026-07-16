@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "agents-react-frontend-redesign-interactive/dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
