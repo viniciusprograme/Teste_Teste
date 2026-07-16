@@ -6,7 +6,9 @@
   ],
   "scripts": {
     "build": "npm run build --workspace agents-react-frontend-redesign-interactive",
+    "postbuild": "node agents-react-frontend-redesign-interactive/scripts/generate-sitemap.js",
     "predeploy": "npm run build",
+    "preview": "firebase hosting:channel:deploy preview --project teste-a944e",
     "deploy": "firebase deploy --only hosting"
   }
 }
